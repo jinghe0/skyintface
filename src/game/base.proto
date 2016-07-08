@@ -1,0 +1,47 @@
+package game;
+
+enum CS_CMD_ID {
+    CS_CMD_LOGIN                    = 500;
+    CS_CMD_HEART_BEAT          = 501;
+    CS_CMD_ENTER_SERVER      = 502;
+    CS_CMD_LOGOUT                 = 503;
+    CS_CMD_DIRECT_ENTER       = 504;
+    CS_CMD_CANENTER             = 505;
+    CS_CMD_QUEUE                   = 506;
+    CS_CMD_CHANGE_NAME              = 507; // 修改名字
+    CS_CMD_GM_COMMAND               = 508; // GM命令
+    CS_CMD_USE_GIFT_CODE            = 510; // 使用礼包码
+    CS_CMD_QUERY_PLAYERINFO         = 511; // 查看玩家信息
+    CS_CMD_CHANGE_PLAYER_ICON       = 512; // 玩家修改头像
+    CS_CMD_SET_NEWBIE               = 513; // 设置新手标识(网络版使用)
+    CS_CMD_GET_NEWBIE_LIST          = 514; // 获取新手引导list
+    CS_CMD_SHOP_GUIDE               = 515; // 新手商城引导
+    CS_CMD_SET_TITLE                = 517;
+    CS_CMD_SHOP_BUY                 = 518;
+    CS_CMD_KICK_PLAYER              = 519; //同一账号玩家踢号处理
+    CS_CMD_STOP_KICK_PLAYLER        = 520; //停服踢号协议
+}
+
+message CSErrorMsg{
+    required uint32 ErrCode = 1;
+}
+
+message CSLoginReq {
+    required string OpenId = 1;
+}
+
+message CSLoginResp{
+    required uint64 Uin = 1;
+}
+
+message C2ServerMsg {
+    optional CSLoginReq Login_Req = 2;
+}
+
+message S2ClientMsg {
+    optional CSErrorMsg Error_Msg =1;
+    optional CSLoginResp Login_Resp = 2;
+}
+
+
+

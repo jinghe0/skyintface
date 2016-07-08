@@ -7,6 +7,8 @@ import (
     "net"
     "io"
     "encoding/binary"
+    "game"
+    "github.com/golang/protobuf/proto"
 )
 
 func main() {
@@ -23,7 +25,16 @@ func main() {
     // _,err = conn.Write([]byte("HEAD / HTTP/1.0\r\n\r\n"))
     // checkError(err)
 
-    data := "Hello world"
+    //data := "Hello world"
+    loginReq := &game.CSLoginReq {
+        OpenId : proto.String("denny"),     
+    }
+
+    data, err := proto.Marshal(loginReq)
+    if err != nil {
+        fmt.Println("marshaling error : ", err)
+    }
+
     msg := make([]byte, 4+len(data))
 
     binary.BigEndian.PutUint16(msg, uint16(2+len(data))) 
