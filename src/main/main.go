@@ -1,12 +1,20 @@
 package main
 
-import "fmt"
-import "network"
+import (
+ "fmt"
+ "network"
+ "storage"
+)
 
 func main() {
      fmt.Println("Server Start")
+
+     redisHelper := new(storage.RedisHelper)
+     redisHelper.Init()
+
      filter := new(network.NetFilter)
      filter.Init()
-     filter.Run()  //Todo 不知道为什么用 go后，这里
+     filter.Run()  
+         
      fmt.Println("Server Start 2")
 }
