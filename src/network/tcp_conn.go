@@ -6,6 +6,7 @@ import (
     "encoding/binary"
     "game"
     "github.com/golang/protobuf/proto"
+    "logic"
 )
 
 type TcpConn struct {
@@ -35,8 +36,8 @@ func Process(msgType uint32, data []byte){
         fmt.Println("unmarshaling error : ", err)
     }
 
-    agentInstance := new(Agent)
-    agentInstance.Init()
+    agentInstance := new(logic.Agent)
+    agentInstance.Init(loginReq.GetOpenId())
 
     fmt.Println("login openid: ", loginReq.GetOpenId())
     //fmt.Println("Data : ", string(buf))

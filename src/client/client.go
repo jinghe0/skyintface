@@ -46,6 +46,16 @@ func main() {
 
     result, err := readFully(conn)
     checkError(err)
+
+    msg2 := make([]byte, 4+len(data))
+
+    binary.BigEndian.PutUint16(msg2, uint16(2+len(data))) 
+    binary.BigEndian.PutUint16(msg2[2:], uint16(501))
+    copy(msg2[4:], data)
+
+     _,err = conn.Write(msg2)
+    checkError(err)
+
     
     fmt.Println(string(result))
     
