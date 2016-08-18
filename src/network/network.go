@@ -35,10 +35,10 @@ func (filter *NetFilter) Init(){
     }    
 }
 
-func handleConn(conn net.Conn){
-    msgParser := new(MsgParser)
-    tcpConn := newTcpConn(conn, msgParser)
-    tcpConn.ReadMsg()
+func handleConn(tcpConn *TcpConn){
+    for {
+        tcpConn.ReadMsg()
+    }
 }
 
 func (filter *NetFilter) Run(){
@@ -50,7 +50,10 @@ func (filter *NetFilter) Run(){
             fmt.Println("Accept error")
             os.Exit(-1)
         }
-        go handleConn(conn)  //利用携程来做接收处理
+        msgParser := new(MsgParser)
+        tcpConn := newTcpConn(conn, msgParser)
+
+        go handleConn(tcpConn)  //利用携程来做接收处理
     }
     fmt.Println("Accept Loop End")
 }

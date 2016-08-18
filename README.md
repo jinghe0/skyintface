@@ -36,7 +36,7 @@ go install
 
 ```shell
 cd $GOPATH/src
-git clone git://github.com/alphazero/Go-Redis.git redis
+go get github.com/alphazero/Go-Redis
 cd redis
 go install
 ```

@@ -17,7 +17,7 @@ func main() {
 //      os.Exit(1)
 //  }
 
-    addr := "10.10.2.92:9090"
+    addr := "127.0.0.1:9090"
     
     conn, err := net.Dial("tcp", addr)
     checkError(err)
