@@ -1,6 +1,8 @@
 #skyintface
 
-## 1. 加载protobuf
+## 1. 加载外部库 
+
+## 加载protobuf
 
    protoc-gen-go:
 
@@ -27,6 +29,15 @@ source profile
 go get github.com/golang/protobuf/proto
 cd github.com/golang/protobuf/proto
 go build
+go install
+```
+
+加载redis
+
+```shell
+cd $GOPATH/src
+git clone git://github.com/alphazero/Go-Redis.git redis
+cd redis
 go install
 ```
 
